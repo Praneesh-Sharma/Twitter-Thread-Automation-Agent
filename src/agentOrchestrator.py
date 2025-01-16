@@ -40,11 +40,11 @@ def create_agent():
             func=summarization_tool,
             description="Summarize the extracted content"
         ),
-        Tool(
-            name="Web Search",
-            func=web_search_tool,
-            description="Search for related content on the web"
-        ),
+        # Tool(
+        #     name="Web Search",
+        #     func=web_search_tool,
+        #     description="Search for related content on the web"
+        # ),
     ]
 
     # Initialize LangChain agent with tools and Groq API model (chat)
