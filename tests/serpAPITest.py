@@ -7,7 +7,7 @@ with open('config/config.json', 'r') as file:
     config_data = json.load(file)
     api_key = config_data["serp_api_key"]
 
-print(api_key)
+# print(api_key)
 
 # Define the search query for "hidevs"
 params = {

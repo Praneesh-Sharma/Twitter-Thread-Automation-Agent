@@ -15,7 +15,7 @@ creds = Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE, scopes=SCOPE
 client = gspread.authorize(creds)
 
 # Open the Google Sheet by its title
-sheet = client.open("Agent Based Twitter Thread Automation").sheet1
+sheet = client.open("Twitter Thread Automation Agent").sheet1
 
 # Example: Update a cell in the sheet
-sheet.update(values=[['Hello, world!']], range_name='A1')
+sheet.update(values=[['Hello, world!']], range_name='A2')
