@@ -25,7 +25,6 @@ def web_search_tool(query: str) -> list:
     return search_related_content(query)
 
 def create_agent():
-    """Create and initialize the LangChain agent."""
     # Initialize the Groq model with the API key
     chat = ChatGroq(temperature=0, model_name="mixtral-8x7b-32768", api_key=groq_api_key)
 
@@ -59,12 +58,10 @@ def create_agent():
     return agent
 
 def run_agent(url: str):
-    """Run the agent to process the URL."""
     agent = create_agent()
     # Run the agent and return the result (this will call all tools in sequence)
     return agent.run(url)
 
 if __name__ == "__main__":
-    # If you want to run the agent standalone with a URL input
-    url = "https://blogs.nvidia.com/blog/ai-policy/"  # Replace with actual URL
+    url = "https://blogs.nvidia.com/blog/ai-policy/" 
     print(run_agent(url))
