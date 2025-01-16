@@ -82,7 +82,7 @@ def main():
         # Display the final results
         print("\nPipeline Complete!")
         # print(f"\nSummarized Content: {summarized_content}")
-        print(f"\nGenerated Twitter Post: {twitter_post}")
+        print(f"\nGenerated Twitter Post: \n{twitter_post}")
 
     except Exception as e:
         print(f"An error occurred: {e}")
