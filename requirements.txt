@@ -1,0 +1,15 @@
+langchain
+openai
+tweepy
+google-api-python-client
+requests
+beautifulsoup4
+serpapi
+qdrant-client
+gspread
+google-auth
+google-auth-oauthlib
+google-auth-httplib2
+oauth2client
+newspaper3k
+lxml[html_clean]
