@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "reverberant-kit-427620-b4",
+  "private_key_id": "09e5ab7eef101ca8b92e17e1bf2a43cf56576b87",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC19USoiKAscD4O\n7KEdoWoVcOReiCoZmJ56wLIOGNtwtpqrltoCI5gCwvyFbZoI/ewbsafPNJXIq8u+\nIpZSSH5ybVjlHFVtloDdJDYUvSlbXTrC8tmAGIx6ccYMIEfmXL0V1Q2hM3OYr6IQ\nyRY3oH+EWnp9YzDpW2BErb+sukRJq7eAe6M0P1iTGVLkZg08CNtamhzlUliYWd7F\nnmcJD2NffMLD/Z9yBV0qjkWsYlg/yygrsXhGzwPbkTf0z2fZUIAnqQwIOIeO6Xdw\nTBTYtgMZiGWgP8irXddm/k7XXSF3fesnk6UzDlgnRfdh7cH8/SS4Kc+XOHSFdUqA\n5lvJn8u/AgMBAAECggEAWfzkSUNUj9Ws412kqs5G9DaiQpwt0f3YNtYw2ObzM9Gj\nOcQ/qjonNgpvr59ORC8sQ1//oWqcvyMzfqOFW0lN+9JXWevC1hFORs/fTS9mEjDP\n3FUVOxQo+W9mJl4aoPNxcigtdvFGtJb73DhO3BDsr6y9kmBpcqdFu4GAX3C5UAMd\nbMt5eiqAE/PvNmKODyzZkpMZc5HWvnGmlKiPr4t+dNtXpJjboCDq/dM0DFP4JeXz\nu4w5o2zF9SsAj4wmfk4KxX4ekORLQGliFHWolaXLsgqhKWwBm5AgaQcvSSajixN4\nPCQHG8R49MBCyM+f8zjcCbFHSI+WHmm81K4iEgq1AQKBgQDwBMIBzUVnMJhF0F3S\nRlHx7qJ+H9CNc3l6P1ebJaKYJi5hpoqRikB2kl/OU/raT60U6evHF4d6SM5CCKQ7\nWfRMPCUYHleZ+JMMVe1SOq6SAvdUkCtDgJBnlovSqMcC5g4hioMA2rbD/67Cv6ab\ngvVAxuj5ashrXPF9WJqG6aBtAQKBgQDCEta01tSEqcqShAmmBW/iGbo5ub1wpD9Z\n8zTmWu1ECRV5oNgBoJmYvt/XnnqgRwXruKjlnQBOax+kmZK1x83mbqFYqXTIGIGw\no1nLs7gXZhfpOAFhziz8/lggI4+P6rNgPFnAeBTQwvFz6mIoLA8bhfNZaEPs8fAV\nQECgKdZ4vwKBgDwoVR/yfRSx/1hwMzPC4EMNFrkZ7EGn0aisO57tPeV4nGNpRI3Z\n4vJVGaIzNkqFcdIuFyRdZ11k5h1y4QbnMu3wnTOAV2CGBwUufD8B6kM6bxdI0y8m\nCAuOlhkEqGy3kI8jklYie3CAoyK4ul974VCNClOJShZuwzAxhvmNkOIBAoGBAJ4S\nwhbhtI+pzHmyWjmDzDGZSvmhtA9/eKpHUhsejIsR6w/6VnZc3T5wmdoCF1ddAhGR\nguAjFRDKaCelfr3ZVHgQPBL/U0N30oqRQp6Mb7F/UpJ/L4D+cd5PPHBRBqnuPNRx\n05jVNf8kCY6kpfaajGOaoy97oXfpR+fHQdwyt6H5AoGAEiDHwHsUjRwrnCB71E4I\nGbUulZkfcRq/ch7KF1PEz0WVVWnokqNJ65tw5mo1sa2YdL2wP8hbu6jRbbPusLNx\nUXlkVVVYBTtQxYGxy0RwuaxIKNt9rYRPdvxbJ2S/oYvO+7AyYYDH+YB3O/HaFKTY\nputIhUIWrHWHE0iiYfdODlQ=\n-----END PRIVATE KEY-----\n",
+  "client_email": "agent-based-twitter-thread-aut@reverberant-kit-427620-b4.iam.gserviceaccount.com",
+  "client_id": "111225827928640416717",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/agent-based-twitter-thread-aut%40reverberant-kit-427620-b4.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
