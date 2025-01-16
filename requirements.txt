@@ -1,7 +1,11 @@
 langchain
-langchain-community
-langchain-openai
-openai
+# langchain-community
+# langchain-openai
+# openai
+google-cloud
+# google-generativeai 
+# langchain-google-genai
+python-dotenv
 tweepy
 google-api-python-client
 google-search-results
