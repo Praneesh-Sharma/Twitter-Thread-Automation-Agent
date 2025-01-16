@@ -2,6 +2,7 @@ langchain
 openai
 tweepy
 google-api-python-client
+google-search-results
 requests
 beautifulsoup4
 serpapi
