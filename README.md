@@ -34,6 +34,9 @@ This project automates content extraction, summarization, Twitter thread creatio
     {
         "groq_api_key": "your-groq-api-key",
         "twitter_api_key": "your-twitter-api-key",
+        "twitter_api_secret_key": "twitter-api-secret-key",
+        "twitter_access_token": "twitter-access-token",
+        "twitter_access_token_secret": "twitter-access-token-secret",
         "serpapi_key": "your-serpapi-key",
         "google_sheets_api_key": "your-google-sheets-api-key"
     }
