@@ -173,7 +173,6 @@ def run_agent(url: str):
         # Final response indicating completion
         agent.run(f"Once you complete all steps, respond with: 'Task successfully completed. No further actions required.'")
         
-        # Return only the necessary values
         return twitter_post, twitter_url
     except Exception as e:
         print(f"An error occurred while processing the agent: {e}")
