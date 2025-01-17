@@ -30,7 +30,12 @@ This project automates content extraction, summarization, Twitter thread creatio
     ```
     source venv/bin/activate
     ```
-2. Run the main script
+2. Run the main script if you want to use the non-agent approach
     ```
-    python src/main.py
+    python main.py
+    ```
+
+3. Run this script if you want to use the agent approach
+    ```
+    python run.py
     ```
