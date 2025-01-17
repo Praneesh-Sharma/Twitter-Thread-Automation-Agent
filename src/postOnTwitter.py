@@ -23,8 +23,9 @@ def load_twitter_credentials():
 
 # Function to post a tweet on Twitter using OAuth 1.0a (User Context)
 def post_on_twitter(tweet_text: str):
-    """Post a tweet on Twitter using OAuth 1.0a User Context."""
+    """Post a tweet on Twitter using OAuth 1.0a User Context and return the tweet URL."""
     try:
+        # Load Twitter credentials (ensure these are correct and loaded)
         credentials = load_twitter_credentials()
         if not credentials:
             print("Twitter credentials missing or incorrect.")
@@ -51,22 +52,32 @@ def post_on_twitter(tweet_text: str):
 
         # Handle the response
         if response.status_code == 201:
-            print("Tweet posted successfully!")
+            tweet_data = response.json()
+            tweet_id = tweet_data["data"]["id"]
+            # Assuming the credentials have the user's Twitter handle (screen_name)
+            username = credentials["access_token"].split("-")[0]  # Use part of the access token or fetch username from API
+            tweet_url = f"https://twitter.com/{username}/status/{tweet_id}"
+            return tweet_url
         else:
             print(f"Error posting tweet: {response.status_code}, {response.text}")
-
+            return None
+        
     except Exception as e:
         print(f"Error posting tweet: {e}")
+        return None
 
 # Function to ask user if they want to post the tweet or cancel
 def ask_to_post(tweet_text: str):
-    """Ask the user if they want to post the tweet or cancel."""
-    # print("\nGenerated Twitter Post:")
-    # print(tweet_text)
-
+    """Ask the user if they want to post the tweet or cancel and return the tweet URL."""
     user_input = input("\nDo you want to post this tweet? (yes/no): ").strip().lower()
 
     if user_input == "yes":
-        post_on_twitter(tweet_text)
+        tweet_url = post_on_twitter(tweet_text)
+        if tweet_url:
+            return tweet_url
+        else:
+            print("Failed to post the tweet.")
+            return None
     else:
         print("Tweeting has been canceled.")
+        return None
