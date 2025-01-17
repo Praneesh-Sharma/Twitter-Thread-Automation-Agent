@@ -120,7 +120,8 @@ def run_agent(url: str):
     agent = create_agent()
     print(f"Processing URL: {url}")
     # Run the agent and return the result
-    result = agent.run(f"Extract content from this URL, summarize it, and search for related content: {url}")
+    # result = agent.run(f"Extract content from this URL, summarize it, and search for related content: {url}")
+    result = agent.run(f"Extract content from this URL, summarize it, look up related content on web and then summarize them too: {url}")
     return result
 
 if __name__ == "__main__":
