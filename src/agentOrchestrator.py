@@ -45,7 +45,36 @@ def web_search_tool(query: str) -> str:
     combined_results = "\n".join([f"{result['title']}: {result['link']}" for result in search_results])
     return combined_results
 
+def related_content_processing_tool(query: str) -> str:
+    """Tool for extracting and summarizing content from related URLs."""
+    search_results = search_related_content(query)
+    if not search_results:
+        return "No related content found to process."
 
+    processed_results = []
+    for result in search_results:
+        url = result.get('link')
+        if not url:
+            continue
+        # Extract and summarize content from the related URL
+        content = extract_content_from_url(url)
+        if content:
+            summary = summarize_text(content)
+            processed_results.append({
+                "title": result.get('title'),
+                "url": url,
+                "summary": summary or "Failed to summarize content."
+            })
+
+    if not processed_results:
+        return "Failed to process related URLs."
+
+    # Combine results into a readable string
+    output = "\n".join([
+        f"Title: {item['title']}\nURL: {item['url']}\nSummary: {item['summary']}\n"
+        for item in processed_results
+    ])
+    return output
 
 # Initialize the agent with tools
 def create_agent():
@@ -70,7 +99,9 @@ def create_agent():
             description="Search for related content based on the query."
         ),
         Tool(
-            name: 
+            name="Related Content Processing",
+            func=related_content_processing_tool,
+            description="Extract and summarize content from related URLs found in a web search."
         ),
     ]
 
