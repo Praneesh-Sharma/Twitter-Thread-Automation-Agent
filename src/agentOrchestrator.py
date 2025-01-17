@@ -87,6 +87,18 @@ def post_on_twitter_tool(twitter_post: str) -> str:
     tweet_url = ask_to_post(twitter_post)
     return tweet_url
 
+def update_google_sheet_tool(input: str) -> str:
+    """
+    Expects input in the format: (twitter_post, url, tweet_url).
+    """
+    try:
+        twitter_post, url, tweet_url = eval(input)  # Parse the input as a tuple
+        update_google_sheet(twitter_post, url, tweet_url)
+        return "Successfully updated Google sheet"
+    except Exception as e:
+        return f"Failed to update Google sheet: {e}"
+
+
 # Initialize the agent with tools
 def create_agent():
     # Initialize the Groq model with the API key
@@ -124,6 +136,12 @@ def create_agent():
             func=post_on_twitter_tool,
             description="Post the generated content on Twitter using the API."
         ),
+        Tool(
+            name="Updating Sheets",
+            func=update_google_sheet_tool,
+            description="Updates the Google Sheet with details of the post. Input should be (twitter_post, url, tweet_url)."
+        ),
+
     ]
 
     # Initialize LangChain agent with tools and Groq API model (chat)
@@ -131,7 +149,8 @@ def create_agent():
         tools=tools,
         llm=chat,  # Use the Groq model here
         agent_type=AgentType.ZERO_SHOT_REACT_DESCRIPTION,
-        verbose=True  # Enable verbose logging for debugging
+        verbose=True,  # Enable verbose logging for debugging
+        handle_parsing_errors=True
     )
 
     return agent
@@ -146,19 +165,22 @@ def run_agent(url: str):
     # print(main_result)
 
     # Generate a Twitter post from the result
-    twitter_post = agent.run(f"Generate a concise Twitter post (max 250 characters) from this content and then post it on Twitter returning the URL of the post: {main_result}")
+    twitter_post, twitter_url = agent.run(f"Generate a concise Twitter post (max 250 characters) from this content and then post it on Twitter returning the content as well as URL of the post: {main_result}")
     # print("\nGenerated Twitter Post:\n")
     # print(twitter_post)
 
-    # Post th generated content on twitter
+    # Update the Google sheets
+    agent.run(f"Update the Google Sheets with details about the post: ({twitter_post}, {url}, {twitter_url})")
 
+    #Final response
+    agent.run(f"Once you complete all steps, respond with: 'Task successfully completed. No further actions required.'")
 
-    return main_result, twitter_post
+    return main_result, twitter_post, twitter_url
 
 
 if __name__ == "__main__":
     # Input URL for testing
-    test_url = "https://yourstory.com/2025/01/ces-gadget-2025-redefining-future-technology"
+    test_url = "https://www.news18.com/tech/apple-vision-pro-2-could-launch-in-2026-what-we-know-9187977.html"
     result, twitter_post = run_agent(test_url)
     # print("\nFinal Agent Result:\n")
     # print(result)
