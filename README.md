@@ -9,9 +9,13 @@ This project automates content extraction, summarization, Twitter thread creatio
 
 ## Getting Started
 
-### Prerequisites
+### **Prerequisites**
 - Python 3.7+
-- API keys for OpenAI, Twitter, SerpAPI, and Google Sheets.
+- API keys for:
+  - Groq API (for using the Groq model)
+  - Twitter API (for posting tweets)
+  - SerpAPI (for searching related content)
+  - Google Sheets API (for updating the Google Sheets)
 
 ### Setup
 1. Clone the repository:
