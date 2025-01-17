@@ -28,6 +28,16 @@ This project automates content extraction, summarization, Twitter thread creatio
     bash setup.sh
     ```
 3. Fill in your API keys in config/config.json
+   - Create a config/config.json file in the root directory
+   - Add your API keys for Groq, Twitter, SerpAPI, and Google Sheets in this file. Here's an example:
+    ```
+    {
+        "groq_api_key": "your-groq-api-key",
+        "twitter_api_key": "your-twitter-api-key",
+        "serpapi_key": "your-serpapi-key",
+        "google_sheets_api_key": "your-google-sheets-api-key"
+    }
+    ```
 
 ### Usage
 1. Activate the virtual environment
