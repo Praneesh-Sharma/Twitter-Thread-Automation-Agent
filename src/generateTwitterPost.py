@@ -12,29 +12,31 @@ def generate_twitter_post(input_text, api_key):
     # Define constraints
     model = "llama-3.3-70b-versatile"
     max_tokens_per_request = 6000  # Chunk splitting threshold
-    model_max_tokens = 1024       # Max tokens the summarizer can handle
+    model_max_tokens = 1000       # Max tokens the summarizer can handle
     twitter_post_max_tokens = 150  
     
     # Helper function: Split text into chunks
     def split_into_chunks(text, max_length):
-        sentences = text.split('. ')
+        # Split the text into words and keep track of token count
+        words = text.split()
         chunks = []
         current_chunk = []
-        current_length = 0
+        current_token_count = 0
         
-        for sentence in sentences:
-            sentence_tokens = len(sentence.split())
-            if current_length + sentence_tokens <= max_length:
-                current_chunk.append(sentence)
-                current_length += sentence_tokens
+        for word in words:
+            # Approximate token count per word
+            word_token_count = len(word.split())
+            if current_token_count + word_token_count <= max_length:
+                current_chunk.append(word)
+                current_token_count += word_token_count
             else:
-                chunks.append('. '.join(current_chunk))
-                current_chunk = [sentence]
-                current_length = sentence_tokens
+                chunks.append(' '.join(current_chunk))
+                current_chunk = [word]
+                current_token_count = word_token_count
         
-        # Add the last chunk
+        # Add the last chunk if any
         if current_chunk:
-            chunks.append('. '.join(current_chunk))
+            chunks.append(' '.join(current_chunk))
         return chunks
     
     # Helper function: Log token counts
@@ -46,8 +48,8 @@ def generate_twitter_post(input_text, api_key):
     log_token_info(input_text, "Initial Input")
     
     # Step 1: Break large input into manageable chunks
-    if len(input_text.split()) > max_tokens_per_request:
-        print("[INFO] Input text exceeds max tokens per request. Splitting into chunks...")
+    if len(input_text.split()) > model_max_tokens:
+        print("[INFO] Input text exceeds model token limit. Splitting into chunks...")
         chunks = split_into_chunks(input_text, model_max_tokens)
     else:
         chunks = [input_text]
@@ -58,8 +60,9 @@ def generate_twitter_post(input_text, api_key):
         log_token_info(chunk, f"Chunk {idx + 1}")
         print(f"[INFO] Summarizing Chunk {idx + 1} using custom summarizer...")
         try:
-            summary = summarize_text(chunk, max_length=150)
-            summarized_chunks.append(summary)
+            # Limit each chunk to 150 tokens for the summarizer (adjust as needed)
+            chunk_summary = summarize_text(chunk, max_length=150)
+            summarized_chunks.append(chunk_summary)
         except Exception as e:
             print(f"[ERROR] Failed to summarize Chunk {idx + 1}: {e}")
     
@@ -76,7 +79,7 @@ def generate_twitter_post(input_text, api_key):
                 "content": "You are a Twitter post generator that writes concise and engaging posts."
             }, {
                 "role": "user",
-                "content": f"Create a Twitter post of approximately 75 to 100 words based on this: {combined_summary}",
+                "content": f"Create a Twitter post of approximately 200 to 250 characters based on this: {combined_summary} ",
             }],
             model=model,
             temperature=0.8,  # Adjust temperature for creativity
