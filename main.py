@@ -8,7 +8,8 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), 'src'
 from contentExtraction import extract_content_from_url  # type: ignore
 from summarize import summarize_text  # type: ignore
 from webSearch import search_related_content  # type: ignore
-from generateTwitterPost import generate_twitter_post # type : ignore
+from generateTwitterPost import generate_twitter_post  # type: ignore
+from postOnTwitter import ask_to_post  # type: ignore
 
 # Groq API key loading from the config file
 with open('config/config.json', 'r') as f:
@@ -74,6 +75,7 @@ def main():
 
         # # Step 6: Use Groq to summarize and generate a Twitter post
         print("\nSummarizing and generating Twitter post using Groq...")
+        # print(combined_extracted_content)
         twitter_post = generate_twitter_post(combined_extracted_content, groq_api_key)
         if not twitter_post:
             print("Failed to generate Twitter post. Please try again.")
@@ -81,8 +83,10 @@ def main():
 
         # Display the final results
         print("\nPipeline Complete!")
-        # print(f"\nSummarized Content: {summarized_content}")
         print(f"\nGenerated Twitter Post: \n{twitter_post}")
+
+        # Step 7: Ask the user if they want to post the tweet
+        ask_to_post(twitter_post)
 
     except Exception as e:
         print(f"An error occurred: {e}")

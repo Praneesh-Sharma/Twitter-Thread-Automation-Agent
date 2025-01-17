@@ -59,10 +59,10 @@ def post_on_twitter(tweet_text: str):
         print(f"Error posting tweet: {e}")
 
 # Function to ask user if they want to post the tweet or cancel
-def ask_to_post_or_cancel(tweet_text: str):
+def ask_to_post(tweet_text: str):
     """Ask the user if they want to post the tweet or cancel."""
-    print("\nGenerated Twitter Post:")
-    print(tweet_text)
+    # print("\nGenerated Twitter Post:")
+    # print(tweet_text)
 
     user_input = input("\nDo you want to post this tweet? (yes/no): ").strip().lower()
 
