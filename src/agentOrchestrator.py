@@ -76,12 +76,16 @@ def related_content_processing_tool(query: str) -> str:
     ])
     return output
 
-def twitter_post_tool(content: str) -> str:
+def generate_twitter_post_tool(content: str) -> str:
     """Tool for generating a Twitter post from the content using the provided API key."""
     post = generate_twitter_post(content, api_key=groq_api_key)
     if not post:
         return "Failed to generate a Twitter post."
     return post
+
+def post_on_twitter_tool(twitter_post: str) -> str:
+    tweet_url = ask_to_post(twitter_post)
+    return tweet_url
 
 # Initialize the agent with tools
 def create_agent():
@@ -112,8 +116,13 @@ def create_agent():
         ),
         Tool(
             name="Twitter Post Generation",
-            func=twitter_post_tool,
-            description="Generate a concise Twitter post (max 250 characters) from the final content using the provided API key."
+            func=generate_twitter_post_tool,
+            description="Generate a concise Twitter post (max 250 characters) from the final content."
+        ),
+        Tool(
+            name="Posting On Twitter",
+            func=post_on_twitter_tool,
+            description="Post the generated content on Twitter using the API."
         ),
     ]
 
@@ -133,22 +142,25 @@ def run_agent(url: str):
     print(f"Processing URL: {url}")
     # Run the agent and get the main result
     main_result = agent.run(f"Extract content from this URL, summarize it, look up related content on web, and then summarize them too: {url}")
-    print("\nMain Processing Result:\n")
-    print(main_result)
+    # print("\nMain Processing Result:\n")
+    # print(main_result)
 
     # Generate a Twitter post from the result
-    twitter_post = agent.run(f"Generate a concise Twitter post (max 250 characters) from this content: {main_result}")
+    twitter_post = agent.run(f"Generate a concise Twitter post (max 250 characters) from this content and then post it on Twitter returning the URL of the post: {main_result}")
     # print("\nGenerated Twitter Post:\n")
     # print(twitter_post)
+
+    # Post th generated content on twitter
+
 
     return main_result, twitter_post
 
 
 if __name__ == "__main__":
     # Input URL for testing
-    test_url = "https://brandequity.economictimes.indiatimes.com/news/digital/code-is-dead-outcomes-is-king-why-ai-is-driving-software-industrys-biggest-disruption/117280810"
+    test_url = "https://yourstory.com/2025/01/ces-gadget-2025-redefining-future-technology"
     result, twitter_post = run_agent(test_url)
-    print("\nFinal Agent Result:\n")
-    print(result)
+    # print("\nFinal Agent Result:\n")
+    # print(result)
     print("\nFinal Twitter Post:\n")
     print(twitter_post)
