@@ -19,7 +19,7 @@ from googleSheetUpdate import update_google_sheet # type: ignore
 with open('config/config.json', 'r') as f:
     config = json.load(f)
     groq_api_key = config.get('groq_api_key')
-    print(f"Loaded API key: {groq_api_key}")
+    # print(f"Loaded API key: {groq_api_key}")
 
 # Define the tools for the agent
 def content_extraction_tool(url: str) -> str:
@@ -159,23 +159,26 @@ def run_agent(url: str):
     """Run the agent to process the URL."""
     agent = create_agent()
     print(f"Processing URL: {url}")
-    # Run the agent and get the main result
-    main_result = agent.run(f"Extract content from this URL, summarize it, look up related content on web, and then summarize them too: {url}")
-    # print("\nMain Processing Result:\n")
-    # print(main_result)
+    
+    try:
+        # Run the agent to extract content, summarize, and process related content
+        main_result = agent.run(f"Extract content from this URL, summarize it, look up related content on web, and then summarize them too: {url}")
+        
+        # Generate Twitter post and post it, then return the Twitter post and URL
+        twitter_post = agent.run(f"Generate a concise Twitter post (max 250 characters) from this content and then post it on Twitter returning the content as well as URL of the post: {main_result}")
+        
+        # Update Google Sheet with post details
+        twitter_url = agent.run(f"Update the Google Sheets with details about the post: ({twitter_post}, {url}, {twitter_url})")
+        
+        # Final response indicating completion
+        agent.run(f"Once you complete all steps, respond with: 'Task successfully completed. No further actions required.'")
+        
+        # Return only the necessary values
+        return twitter_post, twitter_url
+    except Exception as e:
+        print(f"An error occurred while processing the agent: {e}")
+        raise e
 
-    # Generate a Twitter post from the result
-    twitter_post, twitter_url = agent.run(f"Generate a concise Twitter post (max 250 characters) from this content and then post it on Twitter returning the content as well as URL of the post: {main_result}")
-    # print("\nGenerated Twitter Post:\n")
-    # print(twitter_post)
-
-    # Update the Google sheets
-    agent.run(f"Update the Google Sheets with details about the post: ({twitter_post}, {url}, {twitter_url})")
-
-    #Final response
-    agent.run(f"Once you complete all steps, respond with: 'Task successfully completed. No further actions required.'")
-
-    return main_result, twitter_post, twitter_url
 
 
 if __name__ == "__main__":
