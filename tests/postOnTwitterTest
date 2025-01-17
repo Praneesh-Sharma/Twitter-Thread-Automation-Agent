@@ -1,0 +1,23 @@
+import sys
+import os
+import json
+
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../src')))
+from postOnTwitter import post_on_twitter, ask_to_post_or_cancel
+
+def test_post_on_twitter():
+    """Test the Twitter post functionality."""
+    tweet_text = "This is a test tweet from the automation script."
+    print("\nTesting Twitter post...")
+    post_on_twitter(tweet_text)  # This will attempt to post the tweet
+
+def test_ask_to_post_or_cancel():
+    """Test the prompt for posting the tweet."""
+    tweet_text = "This is another test tweet. Do you want to post this?"
+    print("\nTesting post or cancel prompt...")
+    ask_to_post_or_cancel(tweet_text)  # This will ask user to confirm post or cancel
+
+if __name__ == "__main__":
+    # Run tests
+    # test_post_on_twitter()
+    test_ask_to_post_or_cancel()
