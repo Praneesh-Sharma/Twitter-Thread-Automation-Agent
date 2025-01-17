@@ -1,21 +1,14 @@
-#testing script for updating the google sheet
-import gspread
-from google.oauth2.service_account import Credentials
+import sys
+import os
+import json
 
-# Define the scope for Google Sheets API
-SCOPES = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../src')))
+from googleSheetUpdate import update_google_sheet
 
-# Path to the service account JSON file
-SERVICE_ACCOUNT_FILE = 'config/reverberant-kit-427620-b4-09e5ab7eef10.json'
+# Test Data
+topic = "AI advancements in gaming"
+original_url = "https://blogs.nvidia.com/blog/ai-policy/"
+twitter_thread_url = "https://twitter.com/example/status/1234567890"
 
-# Authenticate using the service account credentials
-creds = Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE, scopes=SCOPES)
-
-# Use gspread to open the Google Sheet
-client = gspread.authorize(creds)
-
-# Open the Google Sheet by its title
-sheet = client.open("Twitter Thread Automation Agent").sheet1
-
-# Example: Update a cell in the sheet
-sheet.update(values=[['Hello, world!']], range_name='A2')
+# Call the update function
+update_google_sheet(topic, original_url, twitter_thread_url)
