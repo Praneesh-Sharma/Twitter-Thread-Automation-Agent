@@ -45,9 +45,21 @@ This project automates content extraction, summarization, Twitter thread creatio
  4. Setup Google Cloud Services
    - Enable Required APIs
       - Go to the Google Cloud Console.
-      - Select your project or create a new one.
       - Navigate to APIs & Services > Library.
       - Enable the following APIs: Google Drive API, Google Sheets API
+   - Create a Service Account
+      - In the Google Cloud Console, go to IAM & Admin > Service Accounts.
+      - Create a Service Account with Editor role.
+   - Generate the Service Account Key
+      - Open your Service Account.
+      - Add a new key (JSON) from the Keys tab.
+      - The JSON key file will be downloaded to your computer.
+   - Share Your Google Sheet with the Service Account
+      - Open the Google Sheet you want to use for updates.
+      - Click share and add your service account email (found in the downloaded JSON file, e.g., your-service-account-name@project-id.iam.gserviceaccount.com) with the Editor access
+   - Place the JSON File in the Config Folder
+      - Move the downloaded JSON key file to the config/ folder in the cloned project directory
+      - Update the SERVICE_ACCOUNT_FILE variable in src/googleSheetUpdate.py file with the name of your JSON file
 
 ### Usage
 1. Activate the virtual environment
