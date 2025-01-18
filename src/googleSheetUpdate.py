@@ -6,7 +6,7 @@ from datetime import datetime
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
 
 # Path to the service account JSON file
-SERVICE_ACCOUNT_FILE = 'config/reverberant-kit-427620-b4-09e5ab7eef10.json'
+SERVICE_ACCOUNT_FILE = 'config/gen-lang-client-0877925861-fb7679841481.json'
 
 # Authenticate using the service account credentials
 creds = Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE, scopes=SCOPES)
