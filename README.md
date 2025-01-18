@@ -42,6 +42,13 @@ This project automates content extraction, summarization, Twitter thread creatio
     }
     ```
 
+ 4. Setup Google Cloud Services
+   - Enable Required APIs
+      - Go to the Google Cloud Console.
+      - Select your project or create a new one.
+      - Navigate to APIs & Services > Library.
+      - Enable the following APIs: Google Drive API, Google Sheets API
+
 ### Usage
 1. Activate the virtual environment
     ```
