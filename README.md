@@ -29,7 +29,7 @@ This project automates content extraction, summarization, Twitter thread creatio
     ```
 3. Fill in your API keys in config/config.json
    - Create a config/config.json file in the root directory
-   - Add your API keys for Groq, Twitter, SerpAPI, and Google Sheets in this file. Here's an example:
+   - Add your API keys for Groq, Twitter, SerpAPI, and Google Sheets in this file. Here's the template:
     ```
     {
         "groq_api_key": "your-groq-api-key",
